@@ -53,6 +53,90 @@ def save_file():
 
     if file is None: 
         file = fd.asksaveasfilename(initialfile='Untitled.txt', defaultextension='.txt')
-filetypes=[("Text file", "*.txt"), ("Word Document", '*,docx*'), ("PDF", "*.pdf*")]) 
+        filetypes=[("Text file", "*.txt"), ("Word Document", '*,docx*'), ("PDF", "*.pdf*")])
+    else:
+        file = open(file, "w")
+        file.write(text_area.get(1.0, END))
+        file.close()
+        root.title(f"{os.path.basename(file) - Notepad}")
+
+
+def exit_application():
+    root.destroy()
+
+
+def copy_text():
+     text_area.event_generate("<<Copy>>")
+
+
+def cut_text():
+    text_area.event_generate("<<Cut>>")
+
+def paste_text():
+    text_area.event_generate("<<Paste>>")
+
+
+def select_all():
+    text_area.event_generate("<<Control-Keypress-A")
+
+
+def delete_last_char():
+    text_area.event_generate("KP_Delete>>")
+
+
+def about_notepad():
+    mb.showinfo("About Notepad", "This is just another notepad, i built one coz i wanna own atleast the txt editor to myself")
+
+
+def about_commands():
+    commands = ""
+    under the File Menu:
+    - 'New' clears the entire Text Area
+    - 'Open' clears text and opens another file
+    - 'Save As' saves your file in the same / another extension
+
+    Under the Edit Menu:
+    - 'Copy' copies the selected text to your clipboard
+    - 'Cut' cuts the selected text and removes it from the text area
+    - 'Paste' pastes the copied/cut text
+    - 'Select All' selects the entire text
+    - 'Delete' deletes the last character 
+"""
+
+    mb.showinfo(title="All commands", message=commands, width=60, height=40)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+
+
+
+
 
 
