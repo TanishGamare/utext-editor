@@ -53,12 +53,12 @@ def save_file():
 
     if file is None: 
         file = fd.asksaveasfilename(initialfile='Untitled.txt', defaultextension='.txt')
-        filetypes=[("Text file", "*.txt"), ("Word Document", '*,docx*'), ("PDF", "*.pdf*")])
+        filetypes=[("Text file", "*.txt"), ("Word Document", '*,docx*'), ("PDF", "*.pdf*")]
     else:
         file = open(file, "w")
         file.write(text_area.get(1.0, END))
         file.close()
-        root.title(f"{os.path.basename(file) - Notepad}")
+        root.title(f"{os.path.basename(file)} - Notepad")
 
 
 def exit_application():
@@ -89,21 +89,72 @@ def about_notepad():
 
 
 def about_commands():
-    commands = ""
-    under the File Menu:
-    - 'New' clears the entire Text Area
-    - 'Open' clears text and opens another file
-    - 'Save As' saves your file in the same / another extension
+    commands = """
+under the File Menu:
+- 'New' clears the entire Text Area
+- 'Open' clears text and opens another file
+- 'Save As' saves your file in the same / another extension
 
-    Under the Edit Menu:
-    - 'Copy' copies the selected text to your clipboard
-    - 'Cut' cuts the selected text and removes it from the text area
-    - 'Paste' pastes the copied/cut text
-    - 'Select All' selects the entire text
-    - 'Delete' deletes the last character 
+ Under the Edit Menu:
+- 'Copy' copies the selected text to your clipboard
+- 'Cut' cuts the selected text and removes it from the text area
+- 'Paste' pastes the copied/cut text
+- 'Select All' selects the entire text
+- 'Delete' deletes the last character 
 """
 
     mb.showinfo(title="All commands", message=commands, width=60, height=40)
+
+menu_bar = Menu(root)
+
+#adding the file menu and its components to create utexteditor 
+file_menu = Menu(menu_bar, tearoff=False, activebackground='DodgerBlue')
+
+file_menu.add_command(label="New", command=open_new_file)
+file_menu.add_command(label="Open File", command=open_file)
+file_menu.add_command(label="Save As", command=save_file)
+file_menu.add_separator()
+file_menu.add_command(label="Close File", command=exit_application)
+
+menu_bar.add_cascade(label="File", menu=file_menu)
+
+#Adding the edit Menu and its components
+edit_menu = Menu(menu_bar, tearoff=False, activebackground='DodgerBlue')
+
+edit_menu.add_command(label='Copy', command=copy_text)
+edit_menu.add_command(label='Cut', command=cut_text)
+edit_menu.add_command(label='Paste', command=paste_text)
+edit_menu.add_separator()
+edit_menu.add_command(label='Select ALl', command=select_all)
+edit_menu.add_command(label='Delete', command=delete_last_char)
+
+menu_bar.add_cascade(label='Edit', menu=edit_menu)
+
+#Adding the help menu and its components
+help_menu= Menu(menu_bar, tearoff=False, activebackground='DodgerBlue')
+
+help_menu.add_command(label='About Notepad', command=about_notepad)
+help_menu.add_command(label='about Commands', command=about_commands)
+
+menu_bar.add_cascade(label='help', menu=help_menu)
+
+root.config(menu=menu_bar)
+
+
+#Basic componentsof the window 
+text_area = Text(root, font=('Times New Roman', 12))
+text_area.grid(sticky=NSEW)
+
+scroller = Scrollbar(text_area, orient=VERTICAL)
+scroller.pack(side=RIGHT, fill=Y)
+
+scroller.config(command=text_area.yview)
+text_area.config(yscrollcommand=scroller.set)
+
+
+
+
+
 
 
 
