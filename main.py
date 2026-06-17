@@ -15,7 +15,7 @@ root.resizable(0, 0)
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 
-icon = ImageTk.PhotoImage(Image.open('Notepad.png'))
+icon = ImageTk.PhotoImage(Image.open('CHALLENGE.jpg'))
 root.iconphoto(False, icon)
 
 
