@@ -25,7 +25,7 @@ root.mainloop()
 
 
 #Initializing all of the functions needed
-def openfile():
+def open_file():
     file = fd.askopenfilename(defaultextension='.txt', filetypes=[('All Files', '*.*'), ("Text File", "*.txt*")])
 
     if file != '':
@@ -64,10 +64,8 @@ def save_file():
 def exit_application():
     root.destroy()
 
-
 def copy_text():
      text_area.event_generate("<<Copy>>")
-
 
 def cut_text():
     text_area.event_generate("<<Cut>>")
@@ -75,18 +73,14 @@ def cut_text():
 def paste_text():
     text_area.event_generate("<<Paste>>")
 
-
 def select_all():
     text_area.event_generate("<<Control-Keypress-A")
-
 
 def delete_last_char():
     text_area.event_generate("KP_Delete>>")
 
-
 def about_notepad():
     mb.showinfo("About Notepad", "This is just another notepad, i built one coz i wanna own atleast the txt editor to myself")
-
 
 def about_commands():
     commands = """
@@ -102,8 +96,7 @@ under the File Menu:
 - 'Select All' selects the entire text
 - 'Delete' deletes the last character 
 """
-
-    mb.showinfo(title="All commands", message=commands, width=60, height=40)
+    mb.showinfo(title="All commands", message=commands, Width=60, height=40)
 
 menu_bar = Menu(root)
 
